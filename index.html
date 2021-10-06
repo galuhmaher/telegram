@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie-edge">
+<title>@galuhmaher Telegram</title>
+</head>
+
+<body>
+<h2 id="demo" style="font-family: &quot;Lucida Console&quot;, Monaco, monospace; text-align: center;"></h2><br/>
+<script>
+var comotURL = new URL(window.location);
+var grupParams = comotURL.searchParams.get('group');
+var mothParams = comotURL.searchParams.get('bulan');
+document.getElementById('demo').innerHTML = '@' + grupParams + ' Bulan ' + mothParams;
+</script>
+	
+  <div id="tele"></div>
+  <script>
+  (function() {
+    var container = document.getElementById('tele')
+        
+    var pageUrl = new URL(window.location);
+    var groupParams = pageUrl.searchParams.get('group');
+
+    var embedChat = function(chatIndex) {
+      var quote = document.createElement('blockquote');
+      quote.classList.add('telegram-post');
+      quote.dataset.telegramPost = `${groupParams}/${chatIndex}`;
+      quote.dataset.width = '100%';
+        
+      container.appendChild(quote);
+    };
+    
+    var insertJs = function() {
+      var script = document.createElement('script');
+      script.src = 'https://telegram.org/js/telegram-widget.js';
+      script.setAttribute('async', '');
+      
+      document.body.appendChild(script);
+    };
+    
+    var fromParams = pageUrl.searchParams.get('from');
+    var toParams = pageUrl.searchParams.get('to');
+    var chatIndexesParams = pageUrl.searchParams.get('chatIndexes');
+    
+    
+    if (groupParams && fromParams && toParams) {
+      var from = parseInt(fromParams);
+      var to = parseInt(toParams);
+      
+      for (var chatIndex = from; chatIndex <= to; chatIndex++) {
+        embedChat(chatIndex);
+      }
+      insertJs();
+    } else if (groupParams && chatIndexesParams) {
+      var chatIndexes = chatIndexesParams.split(',');
+      for (var chatIndex of chatIndexes) {
+        embedChat(chatIndex.trim());
+      }
+      insertJs();
+    } else {
+      container.innerHTML = ' ';
+    }
+})();
+  </script>
+</body>
+</html>
