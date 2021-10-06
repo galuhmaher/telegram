@@ -1,12 +1,12 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie-edge">
-<title>@galuhmaher Telegram</title>
-</head>
+  <title>Telegram Galuh Maher</title>
+  </head>
+  <body>
 
-<body>
 <h2 id="demo" style="font-family: &quot;Lucida Console&quot;, Monaco, monospace; text-align: center;"></h2><br/>
 <script>
 var comotURL = new URL(window.location);
@@ -15,10 +15,10 @@ var mothParams = comotURL.searchParams.get('bulan');
 document.getElementById('demo').innerHTML = '@' + grupParams + ' Bulan ' + mothParams;
 </script>
 	
-  <div id="tele"></div>
+  <div id='teleget'></div>
   <script>
   (function() {
-    var container = document.getElementById('tele')
+    var container = document.getElementById('teleget')
         
     var pageUrl = new URL(window.location);
     var groupParams = pageUrl.searchParams.get('group');
@@ -64,5 +64,5 @@ document.getElementById('demo').innerHTML = '@' + grupParams + ' Bulan ' + mothP
     }
 })();
   </script>
-</body>
+  </body>
 </html>
